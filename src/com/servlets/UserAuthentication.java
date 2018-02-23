@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
 
+import com.dao.UserDAO;
+
 /**
  * Servlet implementation class UserAuthentication
  */
@@ -38,7 +40,15 @@ public class UserAuthentication extends HttpServlet {
 				HttpSession session = (HttpSession) request.getSession();
 				session.setMaxInactiveInterval(
 						(Integer.valueOf(getServletContext().getInitParameter("session_timeout"))));
-				session.setAttribute("admin", true);
+				if (UserDAO.isUserAuthenticate(username, password)) {
+					session.setAttribute("admin", true);
+					request.getRequestDispatcher("DashBoard.jsp").forward(request, response);
+					return;
+				} else {
+					session.invalidate();
+					response.sendRedirect("Login.html");
+					return;
+				}
 			}
 		}
 	}
