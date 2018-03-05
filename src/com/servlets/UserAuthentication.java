@@ -1,14 +1,17 @@
 package com.servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
 
+import com.beans.Component;
+import com.dao.ComponentDAO;
 import com.dao.UserDAO;
 
 /**
@@ -40,8 +43,13 @@ public class UserAuthentication extends HttpServlet {
 				HttpSession session = (HttpSession) request.getSession();
 				session.setMaxInactiveInterval(
 						(Integer.valueOf(getServletContext().getInitParameter("session_timeout"))));
-				if (UserDAO.isUserAuthenticate(username, password)) {
-					session.setAttribute("admin", true);
+				String userRole = UserDAO.isUserAuthenticate(username, password);
+				if (userRole != null && !userRole.isEmpty()) {
+					session.setAttribute("userRole", userRole);
+					session.setAttribute("username", username);
+					ComponentDAO componentDAO = new ComponentDAO();
+					ArrayList<Component> components = componentDAO.getComponents();
+					request.setAttribute("components", components);
 					request.getRequestDispatcher("DashBoard.jsp").forward(request, response);
 					return;
 				} else {

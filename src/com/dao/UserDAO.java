@@ -8,7 +8,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.beans.User;
 import com.utils.ConnectionProvider;
 
 /**
@@ -20,22 +19,22 @@ public class UserDAO {
 	private static ResultSet resultset;
 	private static PreparedStatement preparedStatement;
 
-	public static boolean isUserAuthenticate(String username, String password) {
+	public static String isUserAuthenticate(String username, String password) {
 		conn = ConnectionProvider.getConnection();
-		boolean isUser = false;
+		StringBuilder isUser = new StringBuilder();
 		try {
 			preparedStatement = conn.prepareStatement("select * from users where username = ? and password = ?");
 			preparedStatement.setString(1, username);
 			preparedStatement.setString(2, password);
 			resultset = preparedStatement.executeQuery();
 			if (resultset != null && resultset.next()) {
-				isUser = true;
+				isUser.append(resultset.getString(3));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return isUser;
+		return isUser.toString();
 	}
-	
+
 }
