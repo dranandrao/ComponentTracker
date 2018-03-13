@@ -25,9 +25,18 @@ public class ComponentDAO {
 
 	public ComponentDAO() {
 		// TODO Auto-generated constructor stub
-		conn = ConnectionProvider.getConnection();
+		try {
+			if (conn != null && conn.isClosed()) {
+				conn = ConnectionProvider.getConnection();
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 
+	// retreives the components present in table.
 	public ArrayList<Component> getComponents() {
 		ArrayList<Component> components = new ArrayList<Component>();
 		try {
@@ -45,9 +54,9 @@ public class ComponentDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally {
+		} /*finally {
 			try {
-				resultSet.close();
+				//resultSet.close();
 				statement.close();
 				conn.close();
 			} catch (SQLException e) {
@@ -55,7 +64,22 @@ public class ComponentDAO {
 				e.printStackTrace();
 			}
 
-		}
+		}*/
 		return components;
+	}
+
+	// creates the component.
+	public int createComponent(String component_name, int quantity, String branch) {
+		int result = 0;
+		try {
+			preparedStatement = conn.prepareStatement("Insert into components value(?,?,?,?)");
+			preparedStatement.setString(2, component_name);
+			preparedStatement.setInt(3, quantity);
+			preparedStatement.setString(4, branch);
+			result = preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 }

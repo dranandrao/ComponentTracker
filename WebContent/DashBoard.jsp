@@ -7,11 +7,23 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Dash-Board</title>
+<style>
+table, th, td {
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+th, td {
+	padding: 5px;
+	text-align: left;
+}
+</style>
 </head>
 <body>
 	<jsp:include page="Header.html" />
-	<table style="width: 100%">
+	<jsp:include page="Menu.html"/>
+	<table>
 		<tr>
 			<th>Component ID</th>
 			<th>Component Name</th>
