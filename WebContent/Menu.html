@@ -3,12 +3,25 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Add Component</title>
+<script type="text/javascript">
+	function callAction(param) {
+		if (param == 'a') {
+			window.location.href = './AddComponent.jsp';
+		} else if (param == 'd') {
+			window.location.href = '';
+		} else {
+			window.location.href = '';
+		}
+	}
+</script>
 </head>
 <body>
 	<div>
-		<button id="add" onclick="">Add Component</button>
-		<button id="delete" onclick="">Delete Component</button>
-		<button id="update" onclick="">Update Component</button>
+		<button id="add" onclick="callAction('a')">Add Component</button>
+		<button id="delete" onclick="callAction('d')">Delete
+			Component</button>
+		<button id="update" onclick="callAction('u')">Update
+			Component</button>
 	</div>
 </body>
 </html>
