@@ -12,13 +12,29 @@
     <servlet-name>com.servlets.UserAuthentication</servlet-name>
     <url-pattern>/UserAuthenticate</url-pattern>
   </servlet-mapping>
-   <servlet>
+  <servlet>
     <servlet-name>com.servlets.CreateComponent</servlet-name>
     <servlet-class>com.servlets.CreateComponent</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>com.servlets.CreateComponent</servlet-name>
     <url-pattern>/CreateComponent</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>com.servlets.UpdateComponent</servlet-name>
+    <servlet-class>com.servlets.UpdateComponent</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>com.servlets.UpdateComponent</servlet-name>
+    <url-pattern>/UpdateComponent</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>com.servlets.GetComponents</servlet-name>
+    <servlet-class>com.servlets.GetComponents</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>com.servlets.GetComponents</servlet-name>
+    <url-pattern>/GetComponents</url-pattern>
   </servlet-mapping>
   <context-param>
     <param-name>session_timeout</param-name>

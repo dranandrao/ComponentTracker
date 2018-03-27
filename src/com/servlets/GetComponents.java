@@ -8,23 +8,21 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.beans.Component;
 import com.dao.ComponentDAO;
-import com.dao.UserDAO;
 
 /**
- * Servlet implementation class UserAuthentication
+ * Servlet implementation class GetComponents
  */
-@WebServlet("/UserAuthentication")
-public class UserAuthentication extends HttpServlet {
+@WebServlet("/GetComponents")
+public class GetComponents extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public UserAuthentication() {
+	public GetComponents() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -36,23 +34,13 @@ public class UserAuthentication extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
-
-		if (!username.trim().isEmpty() && !password.trim().isEmpty()) {
-			HttpSession session = (HttpSession) request.getSession();
-			session.setMaxInactiveInterval((Integer.valueOf(getServletContext().getInitParameter("session_timeout"))));
-			String userRole = UserDAO.isUserAuthenticate(username, password);
-			if (userRole != null && !userRole.isEmpty()) {
-				session.setAttribute("userRole", userRole);
-				session.setAttribute("username", username);
-				request.getRequestDispatcher("GetComponents").forward(request, response);
-				return;
-			} else {
-				session.invalidate();
-				response.sendRedirect("Login.html");
-				return;
-			}
+		if (request.getSession(false) != null) {
+			ComponentDAO componentDAO = new ComponentDAO();
+			ArrayList<Component> components = componentDAO.getComponents();
+			request.setAttribute("components", components);
+			request.getRequestDispatcher("DashBoard.jsp").forward(request, response);
+		} else {
+			response.sendRedirect("Login.html");
 		}
 	}
 

@@ -10,8 +10,8 @@ import java.sql.SQLException;
  */
 public class ConnectionProvider implements Provider {
 
-	private static Connection conn;
-	static {
+	private Connection conn;
+	public Connection getConnection() {
 		try {
 			Class.forName(DRIVER);
 			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
@@ -22,9 +22,6 @@ public class ConnectionProvider implements Provider {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-
-	public static Connection getConnection() {
 		// TODO Auto-generated method stub
 		return conn;
 	}
