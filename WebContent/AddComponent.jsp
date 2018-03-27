@@ -21,11 +21,11 @@ html, body {
 </style>
 </head>
 <body>
-<jsp:include page="_header.jsp"/>
+<jsp:include page="Header.jsp"/>
 <div class="spacer">
     &nbsp;
 </div>
 <jsp:include page="AddComponentForm.html"/>
-<jsp:include page="_footer.jsp"/>
+<jsp:include page="Footer.html"/>
 </body>
 </html>

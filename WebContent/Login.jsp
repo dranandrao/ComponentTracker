@@ -103,7 +103,7 @@ input.theinput:hover {
 </style>
 </head>
 <body>
-<jsp:include page="_header.jsp"></jsp:include>
+<jsp:include page="Header.jsp"></jsp:include>
 <div id="container">
 	
 	<!-- Login Container -->
@@ -129,6 +129,6 @@ input.theinput:hover {
 			<br>
 	  	</div>
 	</div>
-	<jsp:include page="_footer.html"></jsp:include>
+	<jsp:include page="Footer.html"></jsp:include>
 </body>
 </html>

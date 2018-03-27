@@ -45,7 +45,7 @@ html, body {
 </head>
 <body>
 
-	<jsp:include page="_header.jsp" />
+	<jsp:include page="Header.jsp" />
 	<div class="spacer">
     &nbsp;
 	</div>
@@ -69,6 +69,6 @@ html, body {
 			</tr>
 		</c:forEach>
 	</table>
-	<jsp:include page="_footer.jsp" />
+	<jsp:include page="Footer.html" />
 </body>
 </html>

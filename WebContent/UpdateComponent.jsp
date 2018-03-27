@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 </head>
 <body>
-<jsp:include page="Header.html"/>
+<jsp:include page="Header.jsp"/>
 <jsp:include page="UpdateComponentForm.html"/>
 <jsp:include page="Footer.html"/>
 </body>
