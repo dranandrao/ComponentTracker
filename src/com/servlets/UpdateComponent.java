@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletResponse;
 import com.dao.ComponentDAO;
 
 /**
- * Servlet implementation class CreateComponent
+ * Servlet implementation class UpdateComponent
  */
-@WebServlet("/CreateComponent")
-public class CreateComponent extends HttpServlet {
+@WebServlet("/UpdateComponent")
+public class UpdateComponent extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public CreateComponent() {
+	public UpdateComponent() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -30,23 +30,27 @@ public class CreateComponent extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		String component_ID = request.getParameter("component_ID");
 		String component_name = request.getParameter("component_name");
 		String quantity = request.getParameter("quantity");
 		String branch = request.getParameter("branch");
 		if (request.getSession(false) != null) {
-			if (component_name != null && quantity != null && branch != null) {
+			if (component_ID != null && component_name != null && quantity != null && branch != null) {
 				ComponentDAO componentDAO = new ComponentDAO();
-				int result = componentDAO.createComponent(component_name, Integer.parseInt(quantity), branch);
+				int result = componentDAO.updateComponent(component_ID,component_name, quantity, branch);
 				if (result == 1) {
 					request.getRequestDispatcher("DashBoard.jsp").forward(request, response);
 				} else {
-					response.getWriter().append("Error..!! Component not added.");
+					response.getWriter().append("Error..!! Component not updated.");
 				}
+			} else {
+				response.getWriter().append("Please fill the form completely..!");
+				request.getRequestDispatcher("UpdateComponent.jsp").include(request, response);
 			}
 		} else {
 			request.getRequestDispatcher("Login.html").forward(request, response);
 		}
-
 	}
 
 	/**
@@ -56,12 +60,7 @@ public class CreateComponent extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		if (request.getSession(false) != null) {
-			doGet(request, response);
-		} else {
-			request.getRequestDispatcher("Login.html").forward(request, response);
-		}
-
+		doGet(request, response);
 	}
 
 }

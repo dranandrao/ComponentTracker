@@ -59,18 +59,41 @@ public class ComponentDAO {
 	public int createComponent(String component_name, int quantity, String branch) {
 		int result = 0;
 		try {
-
-			preparedStatement = conn.prepareStatement("Insert into components value(?,?,?,?)");
+			conn = ConnectionProvider.getConnection();
+			preparedStatement = conn.prepareStatement("Insert into components value(?,?,?)");
 			preparedStatement.setString(2, component_name);
 			preparedStatement.setInt(3, quantity);
 			preparedStatement.setString(4, branch);
 			result = preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			try {
-				resultSet.close();
-				statement.close();
+				preparedStatement.close();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}
+
+	public int updateComponent(String component_ID, String component_name, String quantity, String branch) {
+		int result = 0;
+		try {
+			conn = ConnectionProvider.getConnection();
+			preparedStatement = conn.prepareStatement("update components set component_name = ?, quantity = ?, branch = ? where component_ID = ?");
+			preparedStatement.setInt(4, Integer.parseInt(component_ID));
+			preparedStatement.setString(1, component_name);
+			preparedStatement.setInt(2, Integer.parseInt(quantity));
+			preparedStatement.setString(3, branch);
+			result = preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				preparedStatement.close();
 				conn.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
