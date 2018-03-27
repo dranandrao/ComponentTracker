@@ -4,10 +4,28 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<style>
+
+.spacer
+{
+    width: 100%;
+    height: 95px;
+}
+
+html, body {
+	height: 100%;
+	min-width: 1080px;
+	min-height: 600px;
+	margin: 0px
+}
+</style>
 </head>
 <body>
-<jsp:include page="Header.html"/>
+<jsp:include page="_header.jsp"/>
+<div class="spacer">
+    &nbsp;
+</div>
 <jsp:include page="AddComponentForm.html"/>
-<jsp:include page="Footer.html"/>
+<jsp:include page="_footer.jsp"/>
 </body>
 </html>

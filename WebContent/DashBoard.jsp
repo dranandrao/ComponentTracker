@@ -18,6 +18,19 @@ th, td {
 	padding: 5px;
 	text-align: left;
 }
+
+.spacer
+{
+    width: 100%;
+    height: 95px;
+}
+
+html, body {
+	height: 100%;
+	min-width: 1080px;
+	min-height: 600px;
+	margin: 0px
+}
 </style>
 <script>
 	function deleteComponent(param) {
@@ -31,8 +44,14 @@ th, td {
 </script>
 </head>
 <body>
-	<jsp:include page="Header.html" />
-	<jsp:include page="Menu.html" />
+
+	<jsp:include page="_header.jsp" />
+	<div class="spacer">
+    &nbsp;
+	</div>
+	<jsp:include page="Menu.html"/>
+
+
 	<table>
 		<tr>
 			<th>Component ID</th>
@@ -50,6 +69,6 @@ th, td {
 			</tr>
 		</c:forEach>
 	</table>
-	<jsp:include page="Footer.html" />
+	<jsp:include page="_footer.jsp" />
 </body>
 </html>
