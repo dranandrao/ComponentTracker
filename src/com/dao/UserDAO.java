@@ -20,7 +20,7 @@ public class UserDAO {
 	private static PreparedStatement preparedStatement;
 
 	public static String isUserAuthenticate(String username, String password) {
-		conn = ConnectionProvider.getConnection();
+		conn = new ConnectionProvider().getConnection();
 		StringBuilder isUser = new StringBuilder();
 		try {
 			preparedStatement = conn.prepareStatement("select * from users where username = ? and password = ?");

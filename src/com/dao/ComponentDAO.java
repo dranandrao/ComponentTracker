@@ -27,7 +27,7 @@ public class ComponentDAO {
 	public ArrayList<Component> getComponents() {
 		ArrayList<Component> components = new ArrayList<Component>();
 		try {
-			conn = ConnectionProvider.getConnection();
+			conn = new ConnectionProvider().getConnection();
 			statement = conn.createStatement();
 			resultSet = statement.executeQuery("select * from components");
 			Component component = null;
@@ -59,7 +59,7 @@ public class ComponentDAO {
 	public int createComponent(String component_name, int quantity, String branch) {
 		int result = 0;
 		try {
-			conn = ConnectionProvider.getConnection();
+			conn = new ConnectionProvider().getConnection();
 			preparedStatement = conn.prepareStatement("Insert into components value(?,?,?)");
 			preparedStatement.setString(2, component_name);
 			preparedStatement.setInt(3, quantity);
@@ -82,7 +82,7 @@ public class ComponentDAO {
 	public int updateComponent(String component_ID, String component_name, String quantity, String branch) {
 		int result = 0;
 		try {
-			conn = ConnectionProvider.getConnection();
+			conn = new ConnectionProvider().getConnection();
 			preparedStatement = conn.prepareStatement("update components set component_name = ?, quantity = ?, branch = ? where component_ID = ?");
 			preparedStatement.setInt(4, Integer.parseInt(component_ID));
 			preparedStatement.setString(1, component_name);
