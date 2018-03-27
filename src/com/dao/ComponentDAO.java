@@ -60,7 +60,8 @@ public class ComponentDAO {
 		int result = 0;
 		try {
 			conn = new ConnectionProvider().getConnection();
-			preparedStatement = conn.prepareStatement("Insert into components value(?,?,?)");
+			preparedStatement = conn.prepareStatement("Insert into components value(?,?,?,?)");
+			preparedStatement.setInt(1, 0);
 			preparedStatement.setString(2, component_name);
 			preparedStatement.setInt(3, quantity);
 			preparedStatement.setString(4, branch);
