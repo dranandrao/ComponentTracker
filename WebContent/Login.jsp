@@ -24,7 +24,7 @@ fieldset{
 legend.legend-bold{
 	font: bold 18px Verdana,sans-serif;
 	color: white;
-	padding: 1em 5em;
+	padding: 0.5em 4em;
 	border: 2px solid grey;
 	text-align: center;
 }
@@ -49,14 +49,14 @@ div#container {
 div#loginBox {	
 	align-self: center;
 	
-	background-color: steelblue;
+	background-color: #32363a;
 	color: white;
 	box-sizing:border-box;	
 	border: 1px solid black;
 	border-radius: 2px;
 	box-shadow: 2px 4px 8px 0 rgba(0, 0, 0, 0.3);
 	padding: 10px 20px;
-    height: 330px;
+    height: 255px;
     width:500px;
         
 }
@@ -115,6 +115,7 @@ input.theinput:hover {
 						<label>Username:</label>
 						<input class="theinput" type="text" placeholder= "Enter username" name="username" required/>
 					</div>
+					<br>
 					<div>
 						<label>Password:</label>
 						<input class="theinput" type="password" placeholder = "Enter password" name="password" required/>
@@ -126,12 +127,8 @@ input.theinput:hover {
 				
 			</form>
 			<br>
-			<!-- Login box Footer -->
-			<div id="footer2">
-				<p style="color:black"> New? <a href="Register.jsp">Register</a></p>			
-			</div>
 	  	</div>
 	</div>
-	<jsp:include page="_footer.jsp"></jsp:include>
+	<jsp:include page="_footer.html"></jsp:include>
 </body>
 </html>
