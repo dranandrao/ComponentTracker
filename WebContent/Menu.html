@@ -7,9 +7,7 @@
 	function callAction(param) {
 		if (param == 'a') {
 			window.location.href = './AddComponent.jsp';
-		} else if (param == 'd') {
-			window.location.href = './DeleteComponent.jsp';
-		} else if(param == 'u') {
+		} else if (param == 'u') {
 			window.location.href = './UpdateComponent.jsp';
 		}
 	}
@@ -18,8 +16,6 @@
 <body>
 	<div>
 		<button id="add" onclick="callAction('a')">Add Component</button>
-		<button id="delete" onclick="callAction('d')">Delete
-			Component</button>
 		<button id="update" onclick="callAction('u')">Update
 			Component</button>
 	</div>

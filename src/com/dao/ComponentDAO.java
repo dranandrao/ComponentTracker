@@ -84,11 +84,33 @@ public class ComponentDAO {
 		int result = 0;
 		try {
 			conn = new ConnectionProvider().getConnection();
-			preparedStatement = conn.prepareStatement("update components set component_name = ?, quantity = ?, branch = ? where component_ID = ?");
+			preparedStatement = conn.prepareStatement(
+					"update components set component_name = ?, quantity = ?, branch = ? where component_ID = ?");
 			preparedStatement.setInt(4, Integer.parseInt(component_ID));
 			preparedStatement.setString(1, component_name);
 			preparedStatement.setInt(2, Integer.parseInt(quantity));
 			preparedStatement.setString(3, branch);
+			result = preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				preparedStatement.close();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}
+
+	public int delteComponent(String component_ID) {
+		int result = 0;
+		try {
+			conn = new ConnectionProvider().getConnection();
+			preparedStatement = conn.prepareStatement("Delete from components where component_id = ?");
+			preparedStatement.setInt(1, Integer.parseInt(component_ID));
 			result = preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

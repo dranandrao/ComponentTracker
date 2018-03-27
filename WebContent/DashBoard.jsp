@@ -19,21 +19,34 @@ th, td {
 	text-align: left;
 }
 </style>
+<script>
+	function deleteComponent(param) {
+		if (confirm("Are you sure you want to delete..?")) {
+			window.location.href = "./DeleteComponent" + "?component_ID="
+					+ param;
+		} else {
+
+		}
+	}
+</script>
 </head>
 <body>
 	<jsp:include page="Header.html" />
-	<jsp:include page="Menu.html"/>
+	<jsp:include page="Menu.html" />
 	<table>
 		<tr>
 			<th>Component ID</th>
 			<th>Component Name</th>
 			<th>Number of items</th>
+			<th>Action</th>
 		</tr>
 		<c:forEach items="${components}" var="component" varStatus="loop">
 			<tr>
 				<td><c:out value="${component.getComponent_id()}" /></td>
 				<td><c:out value="${component.getComponent_name()}" /></td>
 				<td><c:out value="${component.getQuantity()}" /></td>
+				<td><button id="delete"
+						onclick="deleteComponent('${component.getComponent_id()}')">Delete</button></td>
 			</tr>
 		</c:forEach>
 	</table>
