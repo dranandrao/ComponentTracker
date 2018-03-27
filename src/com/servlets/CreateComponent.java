@@ -34,11 +34,11 @@ public class CreateComponent extends HttpServlet {
 		String quantity = request.getParameter("quantity");
 		String branch = request.getParameter("branch");
 		if (request.getSession(false) != null) {
-			if (component_name != null && quantity != null && branch != null) {
+			if (!component_name.trim().isEmpty() && !quantity.trim().isEmpty() && !branch.trim().isEmpty()) {
 				ComponentDAO componentDAO = new ComponentDAO();
 				int result = componentDAO.createComponent(component_name, Integer.parseInt(quantity), branch);
 				if (result == 1) {
-					request.getRequestDispatcher("DashBoard.jsp").forward(request, response);
+					request.getRequestDispatcher("GetComponents").forward(request, response);
 				} else {
 					response.getWriter().append("Error..!! Component not added.");
 				}
@@ -56,11 +56,8 @@ public class CreateComponent extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		if (request.getSession(false) != null) {
-			doGet(request, response);
-		} else {
-			request.getRequestDispatcher("Login.html").forward(request, response);
-		}
+
+		doGet(request, response);
 
 	}
 

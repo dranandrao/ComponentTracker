@@ -36,11 +36,12 @@ public class UpdateComponent extends HttpServlet {
 		String quantity = request.getParameter("quantity");
 		String branch = request.getParameter("branch");
 		if (request.getSession(false) != null) {
-			if (component_ID != null && component_name != null && quantity != null && branch != null) {
+			if (!component_ID.trim().isEmpty() && !component_name.trim().isEmpty() && !quantity.trim().isEmpty()
+					&& !branch.trim().isEmpty()) {
 				ComponentDAO componentDAO = new ComponentDAO();
-				int result = componentDAO.updateComponent(component_ID,component_name, quantity, branch);
+				int result = componentDAO.updateComponent(component_ID, component_name, quantity, branch);
 				if (result == 1) {
-					request.getRequestDispatcher("DashBoard.jsp").forward(request, response);
+					request.getRequestDispatcher("GetComponents").forward(request, response);
 				} else {
 					response.getWriter().append("Error..!! Component not updated.");
 				}
