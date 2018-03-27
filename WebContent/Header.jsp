@@ -18,10 +18,9 @@ function logout(){
 
 	<div
 		style="float: right; padding: 10px; text-align: right; color: white;">
-
 		<!-- User store in session with attribute: loginedUser -->
 		Hello <b><%= request.getAttribute("username") %></b>&nbsp
-		<button id="LogOut" onclick="logout()">LogOut</button>
+		<button id="LogOut" onclick="logout()">Logout</button>
 		<br />
 
 	</div>

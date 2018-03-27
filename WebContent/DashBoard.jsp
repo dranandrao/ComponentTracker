@@ -37,21 +37,19 @@ html, body {
 		if (confirm("Are you sure you want to delete..?")) {
 			window.location.href = "./DeleteComponent" + "?component_ID="
 					+ param;
-		} else {
-
-		}
+		} 
 	}
 </script>
 </head>
 <body>
-
 	<jsp:include page="Header.jsp" />
 	<div class="spacer">
     &nbsp;
 	</div>
 	<jsp:include page="Menu.html"/>
-
-
+	<div class="spacer">
+    &nbsp;
+	</div>
 	<table>
 		<tr>
 			<th>Component ID</th>

@@ -46,6 +46,7 @@ public class UserAuthentication extends HttpServlet {
 			if (userRole != null && !userRole.isEmpty()) {
 				session.setAttribute("userRole", userRole);
 				session.setAttribute("username", username);
+				System.out.println("Sessiiooonnn attribute"+ session.getAttribute("username"));
 				request.getRequestDispatcher("GetComponents").forward(request, response);
 				return;
 			} else {
