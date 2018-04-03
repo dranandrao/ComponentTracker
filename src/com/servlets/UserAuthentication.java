@@ -41,12 +41,10 @@ public class UserAuthentication extends HttpServlet {
 
 		if (!username.trim().isEmpty() && !password.trim().isEmpty()) {
 			HttpSession session = (HttpSession) request.getSession();
-			session.setMaxInactiveInterval((Integer.valueOf(getServletContext().getInitParameter("session_timeout"))));
 			String userRole = UserDAO.isUserAuthenticate(username, password);
 			if (userRole != null && !userRole.isEmpty()) {
 				session.setAttribute("userRole", userRole);
 				session.setAttribute("username", username);
-				System.out.println("Sessiiooonnn attribute"+ session.getAttribute("username"));
 				request.getRequestDispatcher("GetComponents").forward(request, response);
 				return;
 			} else {

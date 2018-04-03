@@ -36,8 +36,7 @@
     <servlet-name>com.servlets.GetComponents</servlet-name>
     <url-pattern>/GetComponents</url-pattern>
   </servlet-mapping>
-  <context-param>
-    <param-name>session_timeout</param-name>
-    <param-value>30</param-value>
-  </context-param>
+  <session-config>
+  	<session-timeout>30</session-timeout>
+  </session-config>
 </web-app>
