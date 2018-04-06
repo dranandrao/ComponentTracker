@@ -36,7 +36,6 @@ public class ComponentDAO {
 				component.setComponent_id(resultSet.getInt(1));
 				component.setComponent_name(resultSet.getString(2));
 				component.setQuantity(resultSet.getInt(3));
-				component.setBranch(resultSet.getString(4));
 				components.add(component);
 			}
 		} catch (SQLException e) {
@@ -56,7 +55,7 @@ public class ComponentDAO {
 	}
 
 	// creates the component.
-	public int createComponent(String component_name, int quantity, String branch) {
+	public int createComponent(String component_name, int quantity) {
 		int result = 0;
 		try {
 			conn = new ConnectionProvider().getConnection();
@@ -64,7 +63,6 @@ public class ComponentDAO {
 			preparedStatement.setInt(1, 0);
 			preparedStatement.setString(2, component_name);
 			preparedStatement.setInt(3, quantity);
-			preparedStatement.setString(4, branch);
 			result = preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -124,5 +122,25 @@ public class ComponentDAO {
 			}
 		}
 		return result;
+	}
+	
+	public boolean checkIfComponentIsAvl(int componentID, int quantity) {
+		boolean isAvailable = false;
+		try {
+			conn = new ConnectionProvider().getConnection();
+			preparedStatement = conn.prepareStatement("Select quantity from components where component_id = ?");
+			preparedStatement.setInt(1, componentID);
+			resultSet = preparedStatement.executeQuery();
+			if (resultSet.next()) {
+				int componentsAvailable = resultSet.getInt(1);
+				if (componentsAvailable - quantity > 0) {
+					isAvailable = true;
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return isAvailable;
 	}
 }

@@ -11,7 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.beans.Component;
+import com.beans.Transaction;
+import com.beans.User;
 import com.dao.ComponentDAO;
+import com.dao.TransactionDAO;
 import com.dao.UserDAO;
 
 /**
@@ -45,7 +48,16 @@ public class UserAuthentication extends HttpServlet {
 			if (userRole != null && !userRole.isEmpty()) {
 				session.setAttribute("userRole", userRole);
 				session.setAttribute("username", username);
-				request.getRequestDispatcher("GetComponents").forward(request, response);
+				if (userRole.equalsIgnoreCase("S") || userRole.equalsIgnoreCase("F")) {
+					ArrayList<User> users = UserDAO.getUsers(username);
+					request.setAttribute("users", users);
+					request.setAttribute("userRegnumber", username);
+					request.getRequestDispatcher("GetTransactions").forward(request, response);
+				} else {
+					// Admin part.
+					request.getRequestDispatcher("GetComponents").forward(request, response);
+				}
+
 				return;
 			} else {
 				session.invalidate();

@@ -38,7 +38,7 @@ public class GetComponents extends HttpServlet {
 			ComponentDAO componentDAO = new ComponentDAO();
 			ArrayList<Component> components = componentDAO.getComponents();
 			request.setAttribute("components", components);
-			request.getRequestDispatcher("DashBoard.jsp").forward(request, response);
+			request.getRequestDispatcher("AdminDashBoard.jsp").forward(request, response);
 		} else {
 			response.sendRedirect("Login.html");
 		}

@@ -18,7 +18,6 @@ public class Component implements Serializable {
 	private int component_id;
 	private String component_name;
 	private int quantity;
-	private String branch;
 
 	public int getComponent_id() {
 		return component_id;
@@ -44,12 +43,5 @@ public class Component implements Serializable {
 		this.quantity = quantity;
 	}
 
-	public String getBranch() {
-		return branch;
-	}
-
-	public void setBranch(String branch) {
-		this.branch = branch;
-	}
 
 }

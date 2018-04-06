@@ -7,13 +7,38 @@
 	function logout() {
 		window.location.href = "./LogoutServlet";
 	}
+	function callAction(param) {
+		if (param == 'a') {
+			window.location.href = './AddComponent.jsp';
+		} else if (param == 'u') {
+			window.location.href = './UpdateComponent.jsp';
+		} else if (param == 't') {
+			window.location.href = './CreateTransaction.jsp';
+		} else if (param == 'd') {
+			window.location.href = './GetComponents';
+		}
+	}
 </script>
 </head>
 <body>
 	<div
-		style="background: rgba(0, 0, 0, 0.78); height: 55px; padding: 5px; margin: 0; position: fixed; top: 0px; width: 100%">
+		style="background: black; height: 100px; padding: 5px; margin: 0; position: fixed; top: 0px; width: 100%">
 		<div style="float: left">
-			<h2 style="color: white;">LabComponent</h2>
+			<h2 style="color: white; padding: 2px">LabComponent</h2>
+			<%
+				if ("A".equals(session.getAttribute("userRole"))) {
+			%>
+			<div style="padding: 2px">
+				<button id="add" onclick="callAction('a')">Add Component</button>
+				<button id="update" onclick="callAction('u')">Update
+					Component</button>
+				<button id="transaction" onclick="callAction('t')">Create
+					Transaction</button>
+				<button id="transaction" onclick="callAction('d')">DashBoard</button>
+			</div>
+			<%
+				}
+			%>
 		</div>
 
 		<div
@@ -22,13 +47,9 @@
 			<%
 				if (session.getAttribute("username") != null) {
 			%>
-			Hello <b><%=session.getAttribute("username")%></b>&nbsp
+			Hello, <b><%=session.getAttribute("username")%></b>&nbsp
 			<button id="LogOut" onclick="logout()">Logout</button>
 			<br />
-			<%
-				} else {
-			%>
-			
 			<%
 				}
 			%>

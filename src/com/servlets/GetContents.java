@@ -1,25 +1,31 @@
 package com.servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.beans.Component;
+import com.beans.User;
 import com.dao.ComponentDAO;
+import com.dao.UserDAO;
 
 /**
- * Servlet implementation class CreateComponent
+ * Servlet implementation class GetContents
  */
-@WebServlet("/CreateComponent")
-public class CreateComponent extends HttpServlet {
+@WebServlet("/GetContents")
+public class GetContents extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public CreateComponent() {
+	public GetContents() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -30,21 +36,13 @@ public class CreateComponent extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String component_name = request.getParameter("component_name");
-		String quantity = request.getParameter("quantity");
-		if (request.getSession(false) != null) {
-			if (!component_name.trim().isEmpty() && !quantity.trim().isEmpty()) {
-				ComponentDAO componentDAO = new ComponentDAO();
-				int result = componentDAO.createComponent(component_name, Integer.parseInt(quantity));
-				if (result == 1) {
-					request.getRequestDispatcher("GetComponents").forward(request, response);
-				} else {
-					response.getWriter().append("Error..!! Component not added.");
-				}
-			}
-		} else {
-			request.getRequestDispatcher("Login.html").forward(request, response);
-		}
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+
+		ComponentDAO componentDAO = new ComponentDAO();
+		ArrayList<Component> components = componentDAO.getComponents();
+		request.setAttribute("components", components);
+		request.getRequestDispatcher("Total.jsp").forward(request, response);
 
 	}
 
@@ -55,9 +53,7 @@ public class CreateComponent extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-
 		doGet(request, response);
-
 	}
 
 }

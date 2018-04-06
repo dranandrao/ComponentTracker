@@ -9,7 +9,7 @@
 .spacer
 {
     width: 100%;
-    height: 95px;
+    height: 120px;
 }
 
 html, body {

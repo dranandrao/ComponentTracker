@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Transaction</title>
+</head>
+<body>
+	<form action="CreateTransaction" method="post">
+		<table>
+			<tr>
+				<td>University Number</td>
+				<td><input type="number" name="universityNumber"
+					placeholder="Enter USN"></td>
+			</tr>
+			<tr>
+				<td>Component ID</td>
+				<td><input type="number" name="componentID"
+					placeholder="Enter component ID"></td>
+			</tr>
+			<tr>
+				<td>Quantity</td>
+				<td><input type="number" name="quantity" placeholder="Quantity"></td>
+			</tr>
+			<tr>
+				<td>Borrow Date</td>
+				<td><input type="text" name="borrowDate"
+					placeholder="YYYY-MM-DD"></td>
+			</tr>
+			<tr>
+				<td>Faculty</td>
+				<td><input type="text" name="faculty" placeholder="Faculty"></td>
+			</tr>
+		</table>
+		<input type="submit" value="ADD">&nbsp <input type="reset"
+			value="RESET">
+	</form>
+</body>
+</html>

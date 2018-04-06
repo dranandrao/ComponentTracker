@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Transaction</title>
 <style>
 .spacer {
 	width: 100%;
@@ -21,7 +22,7 @@ html, body {
 <body>
 	<div class="spacer">&nbsp;</div>
 	<jsp:include page="Header.jsp" />
-	<jsp:include page="UpdateComponentForm.html" />
+	<jsp:include page="CreateTransactionForm.html" />
 	<jsp:include page="Footer.html" />
 </body>
 </html>

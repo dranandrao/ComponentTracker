@@ -19,10 +19,9 @@ th, td {
 	text-align: left;
 }
 
-.spacer
-{
-    width: 100%;
-    height: 95px;
+.spacer {
+	width: 100%;
+	height: 120px;
 }
 
 html, body {
@@ -43,13 +42,8 @@ html, body {
 </head>
 <body>
 	<jsp:include page="Header.jsp" />
-	<div class="spacer">
-    &nbsp;
-	</div>
-	<jsp:include page="Menu.html"/>
-	<div class="spacer">
-    &nbsp;
-	</div>
+	<div class="spacer">&nbsp;</div>
+	<h3 align="left">Components Available</h3>
 	<table>
 		<tr>
 			<th>Component ID</th>
