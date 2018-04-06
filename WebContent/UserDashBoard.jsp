@@ -63,5 +63,6 @@ html, body {
 	</table>
 
 </body>
+<div class="spacer">&nbsp;</div>
 <jsp:include page="Footer.html" />
 </html>

@@ -78,16 +78,15 @@ public class ComponentDAO {
 		return result;
 	}
 
-	public int updateComponent(String component_ID, String component_name, String quantity, String branch) {
+	public int updateComponent(String component_ID, String component_name, String quantity) {
 		int result = 0;
 		try {
 			conn = new ConnectionProvider().getConnection();
 			preparedStatement = conn.prepareStatement(
-					"update components set component_name = ?, quantity = ?, branch = ? where component_ID = ?");
-			preparedStatement.setInt(4, Integer.parseInt(component_ID));
+					"update components set component_name = ?, quantity = ? where component_ID = ?");
+			preparedStatement.setInt(3, Integer.parseInt(component_ID));
 			preparedStatement.setString(1, component_name);
 			preparedStatement.setInt(2, Integer.parseInt(quantity));
-			preparedStatement.setString(3, branch);
 			result = preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -123,7 +122,7 @@ public class ComponentDAO {
 		}
 		return result;
 	}
-	
+
 	public boolean checkIfComponentIsAvl(int componentID, int quantity) {
 		boolean isAvailable = false;
 		try {
@@ -133,7 +132,7 @@ public class ComponentDAO {
 			resultSet = preparedStatement.executeQuery();
 			if (resultSet.next()) {
 				int componentsAvailable = resultSet.getInt(1);
-				if (componentsAvailable - quantity > 0) {
+				if (componentsAvailable - quantity >= 0) {
 					isAvailable = true;
 				}
 			}
@@ -142,5 +141,26 @@ public class ComponentDAO {
 			e.printStackTrace();
 		}
 		return isAvailable;
+	}
+
+	public int updateComponentOnTrasaction(int componentID, int quantity) {
+		int result = 0;
+		try {
+			conn = new ConnectionProvider().getConnection();
+			PreparedStatement preparedStatement1 = conn
+					.prepareStatement("select quantity from components where component_id = ?");
+			preparedStatement1.setInt(1, componentID);
+			resultSet = preparedStatement1.executeQuery();
+			if (resultSet.next()) {
+				int componentQuantity = resultSet.getInt(1);
+				preparedStatement = conn.prepareStatement("Update components set quantity = ? where component_id = ?");
+				preparedStatement.setInt(1, (componentQuantity - quantity));
+				preparedStatement.setInt(2, componentID);
+				result = preparedStatement.executeUpdate();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 }

@@ -99,6 +99,10 @@ public class TransactionDAO {
 					transaction.getQuantity());
 			if (isAvailable) {
 				result = preparedStatement.executeUpdate();
+				if (result > 0) {
+					result = new ComponentDAO().updateComponentOnTrasaction(transaction.getComponent_id(),
+							transaction.getQuantity());
+				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

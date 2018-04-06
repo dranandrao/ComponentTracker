@@ -19,8 +19,17 @@ html, body {
 </style>
 </head>
 <body>
-	<div class="spacer">&nbsp;</div>
 	<jsp:include page="Header.jsp" />
+	<div class="spacer">&nbsp;</div>
+	<%
+		if (request.getAttribute("errorMsg") != null) {
+	%>
+	<div>
+		<p style="color: red"><%=request.getAttribute("errorMsg")%></p>
+	</div>
+	<%
+		}
+	%>
 	<jsp:include page="UpdateComponentForm.html" />
 	<jsp:include page="Footer.html" />
 </body>

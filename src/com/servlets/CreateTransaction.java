@@ -37,24 +37,31 @@ public class CreateTransaction extends HttpServlet {
 		String quantity = request.getParameter("quantity");
 		String borrowDate = request.getParameter("borrowDate");
 		String faculty = request.getParameter("faculty");
-		if (!universityNumber.trim().isEmpty() && !componentID.trim().isEmpty() && !quantity.trim().isEmpty()
-				&& !borrowDate.trim().isEmpty() && !faculty.trim().isEmpty()) {
-			Transaction transaction = new Transaction();
-			transaction.setUniversity_number(Integer.parseInt(universityNumber));
-			transaction.setBorrow_date(borrowDate);
-			transaction.setFaculty(faculty);
-			transaction.setQuantity(Integer.parseInt(quantity));
-			transaction.setComponent_id(Integer.parseInt(componentID));
-			TransactionDAO transactionDAO = new TransactionDAO();
-			int result = transactionDAO.createTransaction(transaction);
-			if (result == 1) {
-				request.getRequestDispatcher("GetComponents").forward(request, response);
+		if (request.getSession(false) != null) {
+			if (!universityNumber.trim().isEmpty() && !componentID.trim().isEmpty() && !quantity.trim().isEmpty()
+					&& !borrowDate.trim().isEmpty() && !faculty.trim().isEmpty()) {
+				Transaction transaction = new Transaction();
+				transaction.setUniversity_number(Integer.parseInt(universityNumber));
+				transaction.setBorrow_date(borrowDate);
+				transaction.setFaculty(faculty);
+				transaction.setQuantity(Integer.parseInt(quantity));
+				transaction.setComponent_id(Integer.parseInt(componentID));
+				TransactionDAO transactionDAO = new TransactionDAO();
+				int result = transactionDAO.createTransaction(transaction);
+				if (result == 1) {
+					request.getRequestDispatcher("GetComponents").forward(request, response);
+				} else {
+					request.setAttribute("errorMsg", "Error..Transaction not processed Try again..!");
+					request.getRequestDispatcher("GetComponents").include(request, response);
+				}
 			} else {
-				response.getWriter().append("Error..!! Transaction not added.");
+				request.setAttribute("errorMsg", "Please fill the form completely..!");
+				request.getRequestDispatcher("CreateTransaction.jsp").include(request, response);
 			}
 		} else {
-			request.getRequestDispatcher("Login.html").forward(request, response);
+			request.getRequestDispatcher("LogoutServlet").forward(request, response);
 		}
+
 	}
 
 	/**

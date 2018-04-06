@@ -37,12 +37,14 @@ public class GetContents extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-
-		ComponentDAO componentDAO = new ComponentDAO();
-		ArrayList<Component> components = componentDAO.getComponents();
-		request.setAttribute("components", components);
-		request.getRequestDispatcher("Total.jsp").forward(request, response);
+		if (request.getSession(false) != null) {
+			ComponentDAO componentDAO = new ComponentDAO();
+			ArrayList<Component> components = componentDAO.getComponents();
+			request.setAttribute("components", components);
+			request.getRequestDispatcher("Total.jsp").forward(request, response);
+		} else {
+			request.getRequestDispatcher("LogoutServlet").forward(request, response);
+		}
 
 	}
 

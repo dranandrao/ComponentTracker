@@ -36,13 +36,22 @@ html, body {
 		if (confirm("Are you sure you want to delete..?")) {
 			window.location.href = "./DeleteComponent" + "?component_ID="
 					+ param;
-		} 
+		}
 	}
 </script>
 </head>
 <body>
 	<jsp:include page="Header.jsp" />
 	<div class="spacer">&nbsp;</div>
+	<%
+		if (request.getAttribute("errorMsg") != null) {
+	%>
+	<div>
+		<p style="color: red"><%=request.getAttribute("errorMsg")%></p>
+	</div>
+	<%
+		}
+	%>
 	<h3 align="left">Components Available</h3>
 	<table>
 		<tr>
@@ -61,6 +70,7 @@ html, body {
 			</tr>
 		</c:forEach>
 	</table>
+	<div class="spacer">&nbsp;</div>
 	<jsp:include page="Footer.html" />
 </body>
 </html>

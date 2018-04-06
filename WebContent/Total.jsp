@@ -50,7 +50,7 @@ html, body {
 			</tr>
 		</c:forEach>
 	</table>
-	<hr>
+	<div class="spacer">&nbsp;</div>
 	<jsp:include page="Footer.html" />
 </body>
 

@@ -37,13 +37,17 @@ public class CreateComponent extends HttpServlet {
 				ComponentDAO componentDAO = new ComponentDAO();
 				int result = componentDAO.createComponent(component_name, Integer.parseInt(quantity));
 				if (result == 1) {
-					request.getRequestDispatcher("GetComponents").forward(request, response);
+					request.getRequestDispatcher("/GetComponents").forward(request, response);
 				} else {
-					response.getWriter().append("Error..!! Component not added.");
+					request.setAttribute("errorMsg", "Error..Component not added..Try again..!");
+					request.getRequestDispatcher("GetComponents").include(request, response);
 				}
+			} else {
+				request.setAttribute("errorMsg", "Please fill the form completely..!");
+				request.getRequestDispatcher("AddComponent.jsp").forward(request, response);
 			}
 		} else {
-			request.getRequestDispatcher("Login.html").forward(request, response);
+			request.getRequestDispatcher("/LogoutServlet").forward(request, response);
 		}
 
 	}

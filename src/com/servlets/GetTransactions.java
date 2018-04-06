@@ -36,11 +36,15 @@ public class GetTransactions extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		int userRegnumber = Integer.parseInt((String) request.getAttribute("userRegnumber"));
-		TransactionDAO TransactionDAO = new TransactionDAO();
-		ArrayList<Transaction> transactions = TransactionDAO.getTransaction(userRegnumber);
-		request.setAttribute("transactions", transactions);
-		request.getRequestDispatcher("UserDashBoard.jsp").forward(request, response);
+		if (request.getSession(false) != null) {
+			int userRegnumber = Integer.parseInt((String) request.getAttribute("userRegnumber"));
+			TransactionDAO TransactionDAO = new TransactionDAO();
+			ArrayList<Transaction> transactions = TransactionDAO.getTransaction(userRegnumber);
+			request.setAttribute("transactions", transactions);
+			request.getRequestDispatcher("UserDashBoard.jsp").forward(request, response);
+		} else {
+			request.getRequestDispatcher("LogoutServlet").forward(request, response);
+		}
 
 	}
 

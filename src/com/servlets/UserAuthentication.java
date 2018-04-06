@@ -43,7 +43,7 @@ public class UserAuthentication extends HttpServlet {
 		String password = request.getParameter("password");
 
 		if (!username.trim().isEmpty() && !password.trim().isEmpty()) {
-			HttpSession session = (HttpSession) request.getSession();
+			HttpSession session = (HttpSession) request.getSession(false);
 			String userRole = UserDAO.isUserAuthenticate(username, password);
 			if (userRole != null && !userRole.isEmpty()) {
 				session.setAttribute("userRole", userRole);
@@ -57,12 +57,9 @@ public class UserAuthentication extends HttpServlet {
 					// Admin part.
 					request.getRequestDispatcher("GetComponents").forward(request, response);
 				}
-
-				return;
 			} else {
-				session.invalidate();
-				response.sendRedirect("Login.html");
-				return;
+				request.setAttribute("errorMsg", "Username or password is incorrect");
+				request.getRequestDispatcher("Login.jsp").forward(request, response);
 			}
 		}
 	}

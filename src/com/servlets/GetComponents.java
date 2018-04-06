@@ -40,7 +40,7 @@ public class GetComponents extends HttpServlet {
 			request.setAttribute("components", components);
 			request.getRequestDispatcher("AdminDashBoard.jsp").forward(request, response);
 		} else {
-			response.sendRedirect("Login.html");
+			request.getRequestDispatcher("LogoutServlet").forward(request, response);
 		}
 	}
 
