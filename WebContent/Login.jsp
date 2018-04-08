@@ -58,12 +58,13 @@ div#loginBox {
 
 input.submit {
 	background-color: grey;
-	padding: 5px 10px;
+	padding: 5px 20px;
 	color: white;
 	display: inline:block;
 	border-radius: 4px;
 	border: 1px solid whitesmoke;
 	transition-duration: 0.4s;
+	font-size:100%;
 }
 
 input.submit:hover {
@@ -116,7 +117,7 @@ input.theinput:hover {
 					<%	
 						}
 					%>
-					<input class="submit" type="submit" value="Login" />
+					<input class="submit" type="submit" value="LOGIN" />
 				</fieldset>
 			</form>
 		</div>

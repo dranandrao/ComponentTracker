@@ -11,7 +11,7 @@ import java.io.Serializable;
  */
 public class User implements Serializable {
 	/**
-	 * 
+	 * This class is replica of User table in DB.
 	 */
 	private static final long serialVersionUID = -26420630258123967L;
 	private String username;

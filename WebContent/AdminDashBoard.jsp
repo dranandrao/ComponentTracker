@@ -9,6 +9,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Dash-Board</title>
 <style>
+table {
+	margin: 2px;
+}
+
 table, th, td {
 	border: 1px solid black;
 	border-collapse: collapse;

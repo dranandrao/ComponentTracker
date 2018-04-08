@@ -78,12 +78,13 @@ public class ComponentDAO {
 		return result;
 	}
 
+	// Update the component.
 	public int updateComponent(String component_ID, String component_name, String quantity) {
 		int result = 0;
 		try {
 			conn = new ConnectionProvider().getConnection();
-			preparedStatement = conn.prepareStatement(
-					"update components set component_name = ?, quantity = ? where component_ID = ?");
+			preparedStatement = conn
+					.prepareStatement("update components set component_name = ?, quantity = ? where component_ID = ?");
 			preparedStatement.setInt(3, Integer.parseInt(component_ID));
 			preparedStatement.setString(1, component_name);
 			preparedStatement.setInt(2, Integer.parseInt(quantity));
@@ -102,6 +103,7 @@ public class ComponentDAO {
 		return result;
 	}
 
+	// Delete the component
 	public int delteComponent(String component_ID) {
 		int result = 0;
 		try {
@@ -123,6 +125,7 @@ public class ComponentDAO {
 		return result;
 	}
 
+	// Check if component is available.Used by TransactionDAO class.
 	public boolean checkIfComponentIsAvl(int componentID, int quantity) {
 		boolean isAvailable = false;
 		try {
@@ -143,6 +146,7 @@ public class ComponentDAO {
 		return isAvailable;
 	}
 
+	// reflect the changes in the component table if transaction is successful.
 	public int updateComponentOnTrasaction(int componentID, int quantity) {
 		int result = 0;
 		try {

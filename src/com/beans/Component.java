@@ -12,7 +12,7 @@ import java.io.Serializable;
 public class Component implements Serializable {
 
 	/**
-	 * 
+	 * This class is replica of the component table in DB.
 	 */
 	private static final long serialVersionUID = -7529030392968700769L;
 	private int component_id;

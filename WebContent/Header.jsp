@@ -24,7 +24,7 @@
 	<div
 		style="background: black; height: 100px; padding: 5px; margin: 0; position: fixed; top: 0px; width: 100%">
 		<div style="float: left">
-			<h2 style="color: white; padding: 2px">LabComponent</h2>
+			<p style="color: white; padding: 2px; font-size: 150%">LabComponent</p>
 			<%
 				if ("A".equals(session.getAttribute("userRole"))) {
 			%>
